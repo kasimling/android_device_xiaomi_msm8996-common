@@ -215,16 +215,10 @@ on property:sys.usb.config=ptp,adb
 on property:sys.usb.config=mtp
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 2717
-#    write /sys/class/android_usb/android0/idProduct ff60
-    write /sys/class/android_usb/android0/idProduct ff68   # Force MTP+ADB
-#    write /sys/class/android_usb/android0/functions mtp
-    write /sys/class/android_usb/android0/functions mtp,adb
+    write /sys/class/android_usb/android0/idProduct ff60
+    write /sys/class/android_usb/android0/functions mtp
     write /sys/class/android_usb/android0/enable 1
-    start adbd
-#    setprop sys.usb.state ${sys.usb.config}
-    setprop sys.usb.state mtp,adb
-    setprop sys.usb.config mtp,adb
-    setprop persist.sys.usb.config mtp,adb
+    setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=mtp,adb
     write /sys/class/android_usb/android0/enable 0
